@@ -1,0 +1,38 @@
+{
+  "name": "condohub-shell",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Shell de los micro frontends de CondoHub: login SSO y host de remotos",
+  "scripts": {
+    "dev": "vite --port 5173",
+    "build": "tsc --noEmit && vite build",
+    "preview": "vite preview --port 5173",
+    "test": "vitest run",
+    "lint": "eslint src tests",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "oidc-client-ts": "^3.1.0",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "react-router-dom": "^6.26.0"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.10.0",
+    "@originjs/vite-plugin-federation": "^1.3.6",
+    "@testing-library/react": "^16.0.0",
+    "@types/node": "^20.19.43",
+    "@types/react": "^18.3.5",
+    "@types/react-dom": "^18.3.0",
+    "@vitejs/plugin-react": "^4.3.1",
+    "eslint": "^9.10.0",
+    "eslint-plugin-react-hooks": "^5.1.0",
+    "globals": "^15.9.0",
+    "jsdom": "^25.0.0",
+    "typescript": "^5.5.4",
+    "typescript-eslint": "^8.5.0",
+    "vite": "^5.4.0",
+    "vitest": "^2.1.0"
+  }
+}
