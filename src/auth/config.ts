@@ -12,5 +12,6 @@ export function crearUserManager(): UserManager {
     // El token vive solo en memoria. El estado temporal del login (PKCE) usa sessionStorage porque debe
     // sobrevivir a la redirección a Keycloak.
     userStore: new WebStorageStateStore({ store: new InMemoryWebStorage() }),
+    automaticSilentRenew: true, // renueva el access token antes de que venza (15 min) con el refresh token de Keycloak
   });
 }

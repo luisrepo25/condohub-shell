@@ -51,8 +51,10 @@ npm run lint
 - Login real contra Keycloak (Authorization Code + PKCE, cliente público `condohub-spa`); sin sesión redirige a Keycloak. El token vive solo en memoria; recargar vuelve a pasar por Keycloak (SSO sin pedir contraseña).
 - Menú e inicio por rol: ADMIN → `/admin`, GUARDIA → `/guardia`, RESIDENTE → `/residente` (con varios roles: ADMIN > GUARDIA > RESIDENTE). Los roles de la interfaz se leen del access token solo para decidir qué mostrar; la seguridad real está en los servicios.
 - `RemoteHost` monta cada remoto con `mount(el, { getToken, user })`; si no responde, muestra un error y el shell sigue vivo.
-- Pendiente: Module Federation real (`remotes` vacío en `vite.config.ts`; hoy se cargan por URL con `import()`), renovación silenciosa del token (al vencer a los 15 min vuelve a Keycloak), estilos. Probar a mano en el navegador con un remoto real: aún no hay remotos.
-- `npm test` (13 tests), `npm run lint`, `npm run typecheck`, `npm run build`. Variables en `.env.example`.
+- Renovación silenciosa del token (16/10/2026): `automaticSilentRenew` con el refresh token de Keycloak; `getToken()` siempre devuelve el access token vigente. Si la renovación falla, al vencer vuelve a Keycloak.
+- Remotos (16/10/2026): `admin`, `residente` y `guardia` tienen esqueleto (React + Vite, módulo ES con `mount`/`unmount`, consulta `miPerfil`). Se sirven con `npm run dev` en sus puertos.
+- Pendiente: Module Federation real (`remotes` vacío en `vite.config.ts`; hoy se cargan por URL con `import()`), estilos. Probar a mano en el navegador con los remotos.
+- `npm test` (14 tests), `npm run lint`, `npm run typecheck`, `npm run build`. Variables en `.env.example`.
 
 ## Código funcional protegido (obligatorio)
 

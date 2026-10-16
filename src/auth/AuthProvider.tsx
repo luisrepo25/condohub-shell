@@ -9,7 +9,7 @@ export interface GestorSesion {
   signinRedirect(): Promise<void>;
   signinRedirectCallback(): Promise<User>;
   signoutRedirect(): Promise<void>;
-  events: { addAccessTokenExpired(cb: () => void): void };
+  events: { addAccessTokenExpired(cb: () => void): void; addUserLoaded?(cb: (user: User) => void): void };
 }
 
 export interface Sesion {
@@ -30,7 +30,7 @@ export function useSesion(): Sesion {
   return sesion;
 }
 
-function aSesion(user: User, gestor: GestorSesion): Sesion {
+function aSesion(user: User, gestor: GestorSesion, tokenActual: { current: string }): Sesion {
   return {
     usuario: {
       sub: user.profile.sub,
@@ -38,7 +38,7 @@ function aSesion(user: User, gestor: GestorSesion): Sesion {
       email: user.profile.email ?? '',
     },
     roles: rolesDelToken(user.access_token),
-    getToken: () => user.access_token,
+    getToken: () => tokenActual.current,
     cerrarSesion: () => gestor.signoutRedirect(),
   };
 }
@@ -47,15 +47,22 @@ export function AuthProvider({ children, gestor }: { children: ReactNode; gestor
   const gestorActual = useMemo<GestorSesion>(() => gestor ?? crearUserManager(), [gestor]);
   const [estado, setEstado] = useState<Estado>({ tipo: 'cargando' });
   const iniciado = useRef(false); // StrictMode ejecuta los efectos dos veces; el código del login solo sirve una vez
+  const tokenActual = useRef(''); // access token vigente; la renovación silenciosa lo reemplaza sin recargar
 
   useEffect(() => {
     if (iniciado.current) return;
     iniciado.current = true;
-    const alAutenticar = (user: User) => setEstado({ tipo: 'autenticado', sesion: aSesion(user, gestorActual) });
+    const alAutenticar = (user: User) => {
+      tokenActual.current = user.access_token;
+      setEstado({ tipo: 'autenticado', sesion: aSesion(user, gestorActual, tokenActual) });
+    };
     const fallar = (e: unknown) =>
       setEstado({ tipo: 'error', mensaje: e instanceof Error ? e.message : 'No se pudo iniciar sesión' });
 
     gestorActual.events.addAccessTokenExpired(() => void gestorActual.signinRedirect());
+    gestorActual.events.addUserLoaded?.((user) => {
+      tokenActual.current = user.access_token;
+    });
 
     if (window.location.pathname === '/callback') {
       gestorActual
