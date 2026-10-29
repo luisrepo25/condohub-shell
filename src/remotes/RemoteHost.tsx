@@ -12,6 +12,8 @@ export function RemoteHost({ nombre, url, cargar = cargarPorDefecto }: { nombre:
   const contenedor = useRef<HTMLDivElement>(null);
   const sesion = useSesion();
   const [error, setError] = useState(false);
+  const [cargando, setCargando] = useState(true);
+  const [intento, setIntento] = useState(0);
 
   useEffect(() => {
     const el = contenedor.current;
@@ -19,25 +21,33 @@ export function RemoteHost({ nombre, url, cargar = cargarPorDefecto }: { nombre:
     let remoto: Remoto | undefined;
     let cancelado = false;
     setError(false);
+    setCargando(true);
     cargar(url)
       .then(async (modulo) => {
         if (cancelado) return;
         remoto = modulo;
         await modulo.mount(el, { getToken: sesion.getToken, user: sesion.usuario });
+        if (!cancelado) setCargando(false);
       })
       .catch(() => !cancelado && setError(true));
     return () => {
       cancelado = true;
       remoto?.unmount(el);
     };
-  }, [url, cargar, sesion]);
+  }, [url, cargar, sesion, intento]);
 
   if (error) {
     return (
-      <p role="alert">
-        El módulo «{nombre}» no está disponible en este momento. Intenta de nuevo más tarde.
-      </p>
+      <div role="alert">
+        <p>El módulo «{nombre}» no está disponible en este momento. Intenta de nuevo más tarde.</p>
+        <button onClick={() => setIntento((n) => n + 1)}>Reintentar</button>
+      </div>
     );
   }
-  return <div ref={contenedor} data-remoto={nombre} />;
+  return (
+    <>
+      {cargando && <p role="status">Cargando…</p>}
+      <div ref={contenedor} data-remoto={nombre} />
+    </>
+  );
 }

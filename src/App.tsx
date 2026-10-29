@@ -2,6 +2,7 @@ import { Navigate, Route, Routes } from 'react-router-dom';
 import { useSesion } from '@/auth/AuthProvider';
 import { RutaProtegida } from '@/auth/RutaProtegida';
 import { rutaInicial } from '@/auth/roles';
+import { InicioPage } from '@/inicio/InicioPage';
 import { Layout } from '@/layout/Layout';
 import { RemoteHost } from '@/remotes/RemoteHost';
 import { REMOTOS } from '@/remotes/remotos';
@@ -11,7 +12,7 @@ export function App() {
   return (
     <Routes>
       <Route element={<Layout />}>
-        <Route index element={<Navigate to={rutaInicial(sesion.roles)} replace />} />
+        <Route index element={sesion.roles.length ? <InicioPage /> : <Navigate to={rutaInicial(sesion.roles)} replace />} />
         {REMOTOS.map((r) => (
           <Route
             key={r.nombre}

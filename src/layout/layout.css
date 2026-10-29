@@ -1,0 +1,52 @@
+.ch-barra {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.75rem 1.25rem;
+  padding: 0.65rem 1.5rem;
+  background: var(--ch-surface);
+  border-bottom: 1px solid var(--ch-border);
+}
+.ch-marca { font-size: 1.15rem; font-weight: 700; letter-spacing: -0.02em; color: var(--ch-accent); text-decoration: none; }
+.ch-nav { display: flex; gap: 0.35rem; flex: 1; flex-wrap: wrap; }
+.ch-nav a {
+  padding: 0.35rem 0.85rem;
+  border-radius: 999px;
+  color: var(--ch-muted);
+  text-decoration: none;
+  font-size: 0.95rem;
+  transition: background-color 0.15s ease, color 0.15s ease;
+}
+.ch-nav a:hover { color: var(--ch-text); background: var(--ch-bg); }
+.ch-nav a.active { color: var(--ch-accent-texto); background: var(--ch-accent); }
+.ch-usuario { display: flex; align-items: center; gap: 0.6rem; }
+.ch-avatar {
+  display: inline-grid;
+  place-items: center;
+  width: 2rem;
+  height: 2rem;
+  border-radius: 50%;
+  background: var(--ch-accent-suave);
+  color: var(--ch-accent);
+  font-size: 0.8rem;
+  font-weight: 700;
+}
+.ch-usuario-datos { display: flex; flex-direction: column; line-height: 1.2; }
+.ch-usuario-nombre { font-size: 0.9rem; font-weight: 600; }
+.ch-usuario-rol { font-size: 0.75rem; color: var(--ch-muted); }
+.ch-icono-boton { padding: 0.3rem 0.6rem; border-radius: 999px; line-height: 1; }
+.ch-contenido { padding: 2rem 1.5rem; max-width: 72rem; margin: 0 auto; animation: ch-aparecer 0.25s ease; }
+
+@keyframes ch-aparecer {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: none; }
+}
+
+@media (max-width: 40rem) {
+  .ch-barra { padding: 0.6rem 1rem; }
+  .ch-contenido { padding: 1.25rem 1rem; }
+  .ch-usuario-datos { display: none; }
+}

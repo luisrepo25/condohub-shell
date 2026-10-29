@@ -1,0 +1,32 @@
+.ch-inicio-cabecera { margin-bottom: 1.75rem; }
+.ch-inicio-fecha { margin: 0; color: var(--ch-muted); font-size: 0.9rem; text-transform: capitalize; }
+.ch-inicio-titulo { margin: 0.15rem 0 0.25rem; font-size: 1.9rem; letter-spacing: -0.02em; }
+.ch-inicio-sub { margin: 0; color: var(--ch-muted); }
+.ch-inicio-rejilla { display: grid; gap: 1rem; grid-template-columns: repeat(auto-fill, minmax(16rem, 1fr)); }
+.ch-modulo {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  padding: 1.25rem;
+  background: var(--ch-surface);
+  border: 1px solid var(--ch-border);
+  border-radius: 0.9rem;
+  box-shadow: var(--ch-sombra);
+  color: inherit;
+  text-decoration: none;
+  transition: transform 0.15s ease, border-color 0.15s ease;
+}
+.ch-modulo:hover { transform: translateY(-2px); border-color: var(--ch-accent); }
+.ch-modulo-icono {
+  display: grid;
+  place-items: center;
+  width: 2.6rem;
+  height: 2.6rem;
+  border-radius: 0.7rem;
+  background: var(--ch-accent-suave);
+  color: var(--ch-accent);
+  font-size: 1.3rem;
+}
+.ch-modulo-titulo { margin: 0.4rem 0 0; font-size: 1.1rem; }
+.ch-modulo-texto { margin: 0; color: var(--ch-muted); font-size: 0.92rem; }
+.ch-modulo-ir { margin-top: auto; padding-top: 0.5rem; color: var(--ch-accent); font-weight: 600; font-size: 0.9rem; }
