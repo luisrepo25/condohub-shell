@@ -4,6 +4,9 @@ import { BrowserRouter } from 'react-router-dom';
 import { App } from './App';
 import { AuthProvider } from './auth/AuthProvider';
 import './estilos.css';
+import { registrarServiceWorker } from './pwa/registrar';
+
+registrarServiceWorker();
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
