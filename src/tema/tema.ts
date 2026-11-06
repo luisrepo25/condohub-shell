@@ -14,6 +14,15 @@ export function leerTema(almacen: Almacen = window.localStorage): Tema {
   }
 }
 
+/** Tema con el que arranca la interfaz: azul noche, salvo que la persona haya elegido el claro. */
+export function temaInicial(almacen: Almacen = window.localStorage): Tema {
+  try {
+    return almacen.getItem(CLAVE) === 'claro' ? 'claro' : 'oscuro';
+  } catch {
+    return 'oscuro';
+  }
+}
+
 export function guardarTema(tema: Tema, almacen: Almacen = window.localStorage): void {
   try {
     almacen.setItem(CLAVE, tema);

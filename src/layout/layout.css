@@ -40,6 +40,23 @@
 .ch-icono-boton { padding: 0.3rem 0.6rem; border-radius: 999px; line-height: 1; }
 .ch-contenido { padding: 2rem 1.5rem; max-width: 72rem; margin: 0 auto; animation: ch-aparecer 0.25s ease; }
 
+/* Inicio y los tres módulos van a todo el ancho sobre la foto del condominio. */
+.ch-contenido[data-modulo=''],
+.ch-contenido[data-modulo='admin'],
+.ch-contenido[data-modulo='residente'],
+.ch-contenido[data-modulo='guardia'] {
+  max-width: none;
+  min-height: calc(100vh - 64px);
+  margin: 0;
+  padding: 20px 24px 28px;
+  animation: none;
+  background: linear-gradient(rgba(8, 14, 24, 0.2), rgba(8, 14, 24, 0.2)), url('/fondo-condominio.jpg') center / cover no-repeat fixed #0a1420;
+}
+.ch-contenido[data-modulo=''] > section { max-width: 72rem; margin: 0 auto; padding-top: 1.5rem; }
+.ch-contenido[data-modulo=''] .ch-inicio-titulo,
+.ch-contenido[data-modulo=''] .ch-inicio-fecha,
+.ch-contenido[data-modulo=''] .ch-inicio-sub { color: #ffffff; text-shadow: 0 1px 4px rgba(0, 0, 0, 0.85); }
+
 @keyframes ch-aparecer {
   from { opacity: 0; transform: translateY(6px); }
   to { opacity: 1; transform: none; }
@@ -47,6 +64,7 @@
 
 @media (max-width: 40rem) {
   .ch-barra { padding: 0.6rem 1rem; }
-  .ch-contenido { padding: 1.25rem 1rem; }
+  .ch-contenido, .ch-contenido[data-modulo=''], .ch-contenido[data-modulo='admin'], .ch-contenido[data-modulo='residente'],
+.ch-contenido[data-modulo='guardia'] { padding: 1.25rem 1rem; background-attachment: scroll; }
   .ch-usuario-datos { display: none; }
 }

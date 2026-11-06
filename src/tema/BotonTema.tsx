@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react';
-import { aplicarTema, guardarTema, leerTema, type Tema } from './tema';
+import { aplicarTema, guardarTema, temaInicial, type Tema } from './tema';
 
 /** Interruptor claro/oscuro de la barra: aplica el tema al instante y recuerda la elección. */
 export function BotonTema() {
-  const [tema, setTema] = useState<Tema>(leerTema);
+  const [tema, setTema] = useState<Tema>(() => temaInicial());
 
   useEffect(() => aplicarTema(tema), [tema]);
 

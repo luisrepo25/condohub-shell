@@ -1,5 +1,5 @@
 /* Estilos del shell. Los remotos heredan los colores por las variables --ch-*.
-   Claro por defecto; el oscuro solo se activa con data-tema="oscuro" (lo pone el botón de la barra). */
+   El oscuro (azul noche) se activa con data-tema="oscuro": es el inicial, salvo que la persona elija el claro. */
 :root {
   --ch-bg: #f4f6fb;
   --ch-surface: #ffffff;
@@ -10,19 +10,47 @@
   --ch-accent-texto: #ffffff;
   --ch-accent-suave: #e8f0fe;
   --ch-sombra: 0 1px 2px rgba(23, 32, 51, 0.06), 0 4px 16px rgba(23, 32, 51, 0.06);
+  --ch-superficie-2: #eef2f8;
+  --ch-borde-fuerte: #9fb0c7;
+  --ch-control: #7c8aa0;
+  --ch-accent-hover: #1d4ed8;
+  --ch-marco: #ffffff;
+  --ch-opacidad-marco: 30%;
+  --ch-ok: #166534;
+  --ch-ok-fondo: #dcfce7;
+  --ch-aviso: #854d0e;
+  --ch-aviso-fondo: #fef3c7;
+  --ch-peligro: #b91c1c;
+  --ch-peligro-fondo: #fee2e2;
+  --ch-neutro: #475569;
+  --ch-neutro-fondo: #e2e8f0;
   color-scheme: light;
 }
 
 :root[data-tema='oscuro'] {
-  --ch-bg: #0f1419;
-  --ch-surface: #1a2029;
-  --ch-text: #e5e7eb;
-  --ch-muted: #9ca3af;
-  --ch-border: #2d3641;
-  --ch-accent: #60a5fa;
-  --ch-accent-texto: #0f1419;
-  --ch-accent-suave: #1d2a40;
+  --ch-bg: #0a1420;
+  --ch-surface: #0f1a2b;
+  --ch-text: #f2f6fb;
+  --ch-muted: #aebbcb;
+  --ch-border: #2b3c58;
+  --ch-accent: #6db3ff;
+  --ch-accent-texto: #0b1726;
+  --ch-accent-suave: #1d2c44;
   --ch-sombra: 0 1px 2px rgba(0, 0, 0, 0.4), 0 4px 16px rgba(0, 0, 0, 0.3);
+  --ch-superficie-2: #1d2c44;
+  --ch-borde-fuerte: rgba(109, 179, 255, 0.55);
+  --ch-control: #7e93ad;
+  --ch-accent-hover: #9ccbff;
+  --ch-marco: #0a1420;
+  --ch-opacidad-marco: 30%; /* deja ver la foto: todo el texto va sobre paneles con fondo propio */
+  --ch-ok: #8fe3b5;
+  --ch-ok-fondo: #123a2c;
+  --ch-aviso: #f0c674;
+  --ch-aviso-fondo: #3a2f14;
+  --ch-peligro: #ff9f8e;
+  --ch-peligro-fondo: #47211c;
+  --ch-neutro: #cbd5e1;
+  --ch-neutro-fondo: #2b3c58;
   color-scheme: dark;
 }
 

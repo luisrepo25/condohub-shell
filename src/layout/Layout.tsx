@@ -30,7 +30,7 @@ export function Layout() {
         <BotonTema />
         <button onClick={() => void sesion.cerrarSesion()}>Cerrar sesión</button>
       </header>
-      <main className="ch-contenido" key={pathname.split('/')[1]}>
+      <main className="ch-contenido" data-modulo={pathname.split('/')[1]} key={pathname.split('/')[1]}>
         <Outlet />
       </main>
     </>
